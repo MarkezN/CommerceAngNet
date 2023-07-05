@@ -2,11 +2,20 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
 
-public class ProductsController : Controller
+[ApiController]
+[Route("api/[controller]")]
+public class ProductsController : ControllerBase
 {
     // GET
-    public IActionResult Index()
+    [HttpGet]
+    public string GetProducts()
     {
-        return View();
+        return "Get all products";
+    }
+    
+    [HttpGet("{id}")]
+    public string GetProduct(int id)
+    {
+        return "Get single product";
     }
 }
