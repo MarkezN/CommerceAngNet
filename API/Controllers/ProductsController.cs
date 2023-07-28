@@ -1,5 +1,5 @@
-using API.Data;
-using API.Entities;
+using Core.Entities;
+using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,8 +25,8 @@ public class ProductsController : ControllerBase
     }
     
     [HttpGet("{id}")]
-    public string GetProduct(int id)
+    public async Task<ActionResult<Product>> GetProduct(int id)
     {
-        return "Get single product";
+        return await _context.Products.FindAsync(id);
     }
 }
