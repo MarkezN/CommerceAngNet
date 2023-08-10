@@ -28,13 +28,13 @@ using (var scope = app.Services.CreateScope())
         await context.Database.MigrateAsync();
         await StoreContextSeed.SeedAsync(context, loggerFactory);
     }
-    catch(Exception ex)
+    catch (Exception ex)
     {
         var logger = loggerFactory.CreateLogger<Program>();
         logger.LogError(ex, "An error occured during a migration");
     }
 }
-app.Run();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
