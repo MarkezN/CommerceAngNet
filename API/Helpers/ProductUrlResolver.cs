@@ -19,6 +19,5 @@ public class ProductUrlResolver : IValueResolver<Product, ProductToReturnDto, st
         // }
         // return null;
         return !string.IsNullOrEmpty(source.PictureUrl) ? _config["ApiUrl"] + source.PictureUrl : null;
-
     }
 }
