@@ -13,6 +13,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Mapping));
+builder.Services.AddApplicationServices();
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("CorsPolicy", policy =>
+    {
+        policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:7154");
+    });
+});
 
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
@@ -38,7 +46,8 @@ app.UseStatusCodePagesWithReExecute("/errors/{0}");
 app.UseHttpsRedirection();
 app.UseRouting();
 app.UseStaticFiles();
+app.UseCors("CorsPolicy");
 app.UseAuthorization();
-app.UseSwaggerDocumentation();
+app.UseSwaggerDocumentation();  
 app.MapControllers();
 app.Run();
