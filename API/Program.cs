@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration.GetConnectionString("DefaultConnection");
 // Add services to the container.
 builder.Services.AddDbContext<StoreContext>(x => x.UseSqlite(config));
-builder.Services.AddControllers();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Mapping));
@@ -18,10 +18,10 @@ builder.Services.AddCors(opt =>
 {
     opt.AddPolicy("CorsPolicy", policy =>
     {
-        policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:7154");
+        policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:7154", "https://localhost:4200");
     });
 });
-
+builder.Services.AddControllers();
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
