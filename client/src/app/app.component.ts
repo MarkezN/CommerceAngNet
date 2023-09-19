@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { IProduct } from './models/product';
-import { IPagination } from './models/pagination';
 
 @Component({
   selector: 'app-root',
@@ -11,26 +8,9 @@ import { IPagination } from './models/pagination';
 export class AppComponent implements OnInit {
 
   title = 'ECommNetAng';
-  // @ts-ignore
-  products:  IProduct[] = [];
-  constructor(private http: HttpClient) {}
-  ngOnInit(): void {
-    this.http.get<IPagination>('https://localhost:7154/api/Products?pagesize=20').subscribe((response: IPagination) => {
-      this.products = response.data;
-    }, error => {
-      console.log(error);
-    });
-  }
-  // getFilteredProducts(): IProduct[] {
-  //   return this.products.map(product => ({
-  //     id: product.id,
-  //     name: product.name,
-  //     description: product.description,
-  //     price: product.price,
-  //     pictureUrl: product.pictureUrl,
-  //     productType: product.productType,
-  //     brand: product.brand
-  //   }));
-  // }
+  
+  constructor() {}
+  ngOnInit(): void {}
+
 }
 
